@@ -33,3 +33,12 @@ Ver [docs/adr/index.md](docs/adr/index.md).
 ## Licença
 
 MIT — ver [LICENSE](LICENSE).
+
+
+## Project board
+
+Backlog unificado: [Repost Roadmap](https://github.com/users/devrenatafraga/projects/1)
+
+## Onda 1
+
+Os ADRs 0001–0005 estão aceitos. As issues geradas estão em `backlog/wave-1.yaml` e foram sincronizadas nos quatro repositórios via `scripts/sync-backlog.sh`.
