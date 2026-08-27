@@ -1,0 +1,301 @@
+# Backlog da onda 1 — gerado pelos ADRs 0001–0005
+# Sincronizar com: ./scripts/sync-backlog.sh backlog/wave-1.yaml
+#
+# Idioma: títulos e corpos em português (convenção CONTRIBUTING.md).
+# Labels e milestones devem existir nos repos antes do sync.
+
+owner: devrenatafraga
+wave: 1
+
+issues:
+  # --- ADR-0001 / docs foundation ---
+  - repo: repost-documentation
+    title: "Scaffold do repositório de documentação"
+    adr: "0001"
+    milestone: "M1 Fundacao"
+    labels: ["area:docs", "type:chore", "adr:0001", "P1"]
+    body: |
+      Garantir README, LICENSE, CONTRIBUTING, template MADR-lite, índice de ADRs e .gitignore.
+
+      **Critérios de aceite**
+      - [ ] Estrutura `docs/adr/`, `backlog/`, `scripts/`, `templates/` presente
+      - [ ] ADRs 0001–0005 aceitos e indexados
+      - [ ] CONTRIBUTING descreve fluxo ADR → issue → PR
+
+  - repo: repost-documentation
+    title: "Templates canônicos de issue e PR"
+    adr: "0001"
+    milestone: "M1 Fundacao"
+    labels: ["area:docs", "type:chore", "adr:0001", "P1"]
+    body: |
+      Publicar templates em `templates/` e copiá-los para `.github/` deste repo e dos repos de código.
+
+      **Critérios de aceite**
+      - [ ] `feature.yml`, `adr.yml`, `bug.yml`, `PULL_REQUEST_TEMPLATE.md`
+      - [ ] Templates espelhados nos quatro repos
+
+  - repo: repost-documentation
+    title: "Script idempotente de sync do backlog"
+    adr: "0001"
+    milestone: "M1 Fundacao"
+    labels: ["area:docs", "type:chore", "adr:0001", "P1"]
+    body: |
+      Implementar `scripts/sync-backlog.sh` lendo `backlog/wave-N.yaml` e criando issues via `gh`, sem duplicar por título.
+
+      **Critérios de aceite**
+      - [ ] Idempotente (segunda execução só faz SKIP)
+      - [ ] Suporta labels, milestone e referência ao ADR no body
+
+  # --- ADR-0002 / scaffolds ---
+  - repo: repost-manager-backend
+    title: "Scaffold Gradle multi-módulo e esqueleto Ktor"
+    adr: "0002"
+    milestone: "M1 Fundacao"
+    labels: ["area:backend", "type:feat", "adr:0002", "P1"]
+    body: |
+      Criar projeto Gradle com módulos `admin` e `public` isolados, app Ktor mínima e `GET /health`.
+
+      **Critérios de aceite**
+      - [ ] `public` não depende em compilação de `admin`
+      - [ ] `/health` responde 200
+      - [ ] README aponta para ADRs em repost-documentation
+
+  - repo: repost-manager-frontend
+    title: "Scaffold Vite React TypeScript do manager"
+    adr: "0002"
+    milestone: "M1 Fundacao"
+    labels: ["area:manager", "type:feat", "adr:0002", "P1"]
+    body: |
+      Bootstrap Vite + React + TS com estrutura base, lint/typecheck e README.
+
+      **Critérios de aceite**
+      - [ ] `npm run build` e `npm run typecheck` (ou equivalente) passam
+      - [ ] README aponta para ADRs
+
+  - repo: repost-frontend
+    title: "Scaffold Next.js App Router do blog"
+    adr: "0002"
+    milestone: "M1 Fundacao"
+    labels: ["area:blog", "type:feat", "adr:0002", "P1"]
+    body: |
+      Bootstrap Next.js App Router com página inicial placeholder e README.
+
+      **Critérios de aceite**
+      - [ ] `npm run build` passa
+      - [ ] README aponta para ADRs
+
+  # --- ADR-0003 / OpenAPI contract ---
+  - repo: repost-manager-backend
+    title: "Publicar OpenAPI em /openapi.json"
+    adr: "0003"
+    milestone: "M1 Fundacao"
+    labels: ["area:backend", "type:feat", "adr:0003", "P1"]
+    body: |
+      Expor spec OpenAPI do Ktor e validar geração na CI.
+
+      **Critérios de aceite**
+      - [ ] `GET /openapi.json` disponível
+      - [ ] Tags `admin` e `public` presentes (mesmo que vazias no início)
+      - [ ] CI falha se a geração do spec quebrar
+
+  - repo: repost-manager-frontend
+    title: "Geração de tipos OpenAPI e checagem de drift"
+    adr: "0003"
+    milestone: "M1 Fundacao"
+    labels: ["area:manager", "type:feat", "adr:0003", "P1"]
+    body: |
+      Adicionar `npm run gen:api` com openapi-typescript, commit dos tipos e job de CI contra drift.
+
+      **Critérios de aceite**
+      - [ ] Tipos gerados versionados no repo
+      - [ ] CI falha se `gen:api` alterar arquivos sem commit
+
+  - repo: repost-frontend
+    title: "Geração de tipos OpenAPI e checagem de drift"
+    adr: "0003"
+    milestone: "M1 Fundacao"
+    labels: ["area:blog", "type:feat", "adr:0003", "P1"]
+    body: |
+      Adicionar `npm run gen:api` com openapi-typescript, commit dos tipos e job de CI contra drift.
+
+      **Critérios de aceite**
+      - [ ] Tipos gerados versionados no repo
+      - [ ] CI falha se `gen:api` alterar arquivos sem commit
+
+  # --- ADR-0004 / CI ---
+  - repo: repost-manager-backend
+    title: "CI Gradle build e test"
+    adr: "0004"
+    milestone: "M1 Fundacao"
+    labels: ["area:backend", "type:chore", "adr:0004", "P1"]
+    body: |
+      Workflow GitHub Actions rodando build e testes Gradle em PRs para main.
+
+      **Critérios de aceite**
+      - [ ] Workflow em `.github/workflows/ci.yml`
+      - [ ] Branch protection exige o check (quando configurado)
+
+  - repo: repost-manager-frontend
+    title: "CI Node lint typecheck e build"
+    adr: "0004"
+    milestone: "M1 Fundacao"
+    labels: ["area:manager", "type:chore", "adr:0004", "P1"]
+    body: |
+      Workflow GitHub Actions com lint, typecheck e build.
+
+      **Critérios de aceite**
+      - [ ] Workflow em `.github/workflows/ci.yml`
+
+  - repo: repost-frontend
+    title: "CI Node lint typecheck e build"
+    adr: "0004"
+    milestone: "M1 Fundacao"
+    labels: ["area:blog", "type:chore", "adr:0004", "P1"]
+    body: |
+      Workflow GitHub Actions com lint, typecheck e build.
+
+      **Critérios de aceite**
+      - [ ] Workflow em `.github/workflows/ci.yml`
+
+  # --- ADR-0005 / data model ---
+  - repo: repost-manager-backend
+    title: "Migration Flyway inicial com blog_id e role read-only"
+    adr: "0005"
+    milestone: "M1 Fundacao"
+    labels: ["area:backend", "type:feat", "adr:0005", "P1"]
+    body: |
+      Primeira migration: users, blogs, posts, tags, post_tags, pages, media, themes, widgets, settings; seed do blog padrão; role Postgres somente-leitura para superfície public.
+
+      **Critérios de aceite**
+      - [ ] Flyway aplica V1 com sucesso em Postgres local/CI
+      - [ ] Todas as tabelas de conteúdo têm `blog_id`
+      - [ ] Role read-only documentado / criado na migration ou script acompanhante
+
+  # --- type:adr próximas ondas ---
+  - repo: repost-documentation
+    title: "[adr] Autenticação e autorização de usuário único"
+    adr: "0002"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** login sem signup, JWT + refresh cookie, seed do admin via env.
+
+      **O que bloqueia:** CRUD admin, manager login, rate limit.
+
+      **Onda sugerida:** Onda 2 — núcleo
+
+  - repo: repost-documentation
+    title: "[adr] Topologia de hospedagem e deploy"
+    adr: "0002"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** Vercel (fronts), Neon (Postgres), Koyeb/Northflank (Ktor), R2 (mídia), flags JVM 512MB.
+
+      **O que bloqueia:** primeiro deploy e domínio.
+
+      **Onda sugerida:** Onda 2 — núcleo
+
+  - repo: repost-documentation
+    title: "[adr] Estratégia de cache e frescor de conteúdo"
+    adr: "0003"
+    milestone: "M3 Blog publico"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** ISR + cache tags no Next, Cache-Control/ETag no `/public`, webhook de revalidate.
+
+      **O que bloqueia:** blog público e publicação.
+
+      **Onda sugerida:** Onda 3 — blog público
+
+  - repo: repost-documentation
+    title: "[adr] Modelo de tema por design tokens"
+    adr: "0005"
+    milestone: "M4 Tema e widgets"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** schema de tokens, CSS custom properties no blog, editor no manager.
+
+      **O que bloqueia:** editor de tema e aplicação visual no blog.
+
+      **Onda sugerida:** Onda 4 — tema e widgets
+
+  - repo: repost-documentation
+    title: "[adr] Modelo de widgets"
+    adr: "0005"
+    milestone: "M4 Tema e widgets"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** tipos do MVP, slots, registry no blog, config jsonb validada.
+
+      **O que bloqueia:** editor drag-and-drop e render no blog.
+
+      **Onda sugerida:** Onda 4 — tema e widgets
+
+  - repo: repost-documentation
+    title: "[adr] Armazenamento de mídia"
+    adr: "0005"
+    milestone: "M5 Midia e agendamento"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** Cloudflare R2, URL pré-assinada, metadados em `media`.
+
+      **O que bloqueia:** upload de capas e imagens em posts.
+
+      **Onda sugerida:** Onda 5 — mídia e operação
+
+  - repo: repost-documentation
+    title: "[adr] Estratégia de testes"
+    adr: "0004"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** pirâmide de testes (unit/integration no Ktor, Playwright smoke no blog, etc.).
+
+      **O que bloqueia:** definição de Definition of Done técnica.
+
+      **Onda sugerida:** Onda 2 — núcleo
+
+  - repo: repost-documentation
+    title: "[adr] Observabilidade e tratamento de erros"
+    milestone: "M5 Midia e agendamento"
+    labels: ["area:docs", "type:adr", "P3"]
+    body: |
+      **Decisão a registrar:** logging estruturado, StatusPages, correlacão de request id, o que monitorar no free tier.
+
+      **O que bloqueia:** operação confiável em produção.
+
+      **Onda sugerida:** Onda 5 — mídia e operação
+
+  - repo: repost-documentation
+    title: "[adr] Gestão de segredos"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** onde vivem JWT secret, DB URL, R2 keys, revalidate secret; rotação.
+
+      **O que bloqueia:** deploy seguro.
+
+      **Onda sugerida:** Onda 2 — núcleo
+
+  - repo: repost-documentation
+    title: "[adr] Backup e recuperação"
+    milestone: "M5 Midia e agendamento"
+    labels: ["area:docs", "type:adr", "P3"]
+    body: |
+      **Decisão a registrar:** dumps Neon, retenção, restore drill.
+
+      **O que bloqueia:** confiança em dados de produção.
+
+      **Onda sugerida:** Onda 5 — mídia e operação
+
+  - repo: repost-documentation
+    title: "[adr] SEO e feeds"
+    milestone: "M3 Blog publico"
+    labels: ["area:docs", "type:adr", "P2"]
+    body: |
+      **Decisão a registrar:** metadata, OG, sitemap, robots, RSS, JSON-LD.
+
+      **O que bloqueia:** blog público indexável.
+
+      **Onda sugerida:** Onda 3 — blog público
