@@ -17,6 +17,21 @@
 
 PR que altera arquitetura sem ADR correspondente é recusado.
 
+## Políticas dos repositórios (GitHub)
+
+Nos quatro repos, **somente colaboradores** (write access) podem:
+
+- abrir pull requests (`pullRequestCreationPolicy: collaborators_only`)
+- criar issues (`issueCreationPolicy: collaborators_only`)
+
+O backend já estava assim; os demais foram alinhados. Para reaplicar após criar um repo novo:
+
+```bash
+./scripts/apply-repo-contribution-policies.sh
+```
+
+Configuração manual: Settings → General → Features → Issues / Pull requests → **Collaborators only**.
+
 ## Onde escrever o ADR
 
 | Tipo | Local |
