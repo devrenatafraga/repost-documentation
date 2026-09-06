@@ -1,0 +1,52 @@
+# Backlog da onda 2 — núcleo (auth e conteúdo)
+# Sincronizar com: ./scripts/sync-backlog.sh backlog/wave-2.yaml
+#
+# Gerado principalmente por ADR-0006. Issues type:adr de M2 permanecem no wave-1.
+
+owner: devrenatafraga
+wave: 2
+
+issues:
+  - repo: repost-manager-backend
+    title: "Auth admin: login, refresh, logout, JWT e seed via env"
+    adr: "0006"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:backend", "type:feat", "adr:0006", "P1"]
+    body: |
+      Implementar autenticação de usuário único conforme ADR-0006.
+
+      **Critérios de aceite**
+      - [ ] Seed/upsert do admin a partir de `ADMIN_EMAIL` + `ADMIN_PASSWORD_HASH` (BCrypt)
+      - [ ] `POST /api/v1/admin/auth/login` → access JWT + refresh em cookie httpOnly
+      - [ ] `POST /api/v1/admin/auth/refresh` e `POST /api/v1/admin/auth/logout`
+      - [ ] OpenAPI atualizado com tags `admin` / auth
+      - [ ] Testes cobrindo login feliz, senha inválida e refresh
+
+  - repo: repost-manager-backend
+    title: "Proteger /api/v1/admin/** com Bearer JWT e rate limit no login"
+    adr: "0006"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:backend", "type:feat", "adr:0006", "P1"]
+    body: |
+      Middleware/plugin de autenticação JWT em todas as rotas admin (exceto login).
+      Rate limit por IP (+ email no login) retornando 429.
+
+      **Critérios de aceite**
+      - [ ] Request sem Bearer em rota admin → 401
+      - [ ] Login e refresh rate-limited
+      - [ ] CORS com credentials para a origem do manager
+
+  - repo: repost-manager-frontend
+    title: "Tela de login e sessão admin (JWT em memória + refresh cookie)"
+    adr: "0006"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:manager", "type:feat", "adr:0006", "P1"]
+    body: |
+      Fluxo de login no manager conforme ADR-0006.
+
+      **Critérios de aceite**
+      - [ ] Página de login (email/senha)
+      - [ ] Access token só em memória; refresh via cookie com `credentials: 'include'`
+      - [ ] Rotas autenticadas redirecionam para login se a sessão expirar
+      - [ ] Logout limpa estado local e chama a API
+      - [ ] `npm run gen:api` atualizado após o contrato de auth no backend
