@@ -61,7 +61,10 @@ Campos canônicos (orientação; detalhes finais na migration):
 
 ## Backlog gerado
 
-- [ ] `repost-manager-backend` — Migration Flyway inicial + seed do blog padrão + role read-only
+- [x] `repost-manager-backend` — Migration Flyway inicial + seed do blog padrão + role read-only
+- [ ] `repost-manager-backend` — CRUD admin de posts
+- [ ] `repost-manager-backend` — API pública de posts publicados
+- [ ] `repost-manager-frontend` — Listagem e editor Markdown de posts
 - [ ] `repost-documentation` — ADR type:issue — modelo de tema por design tokens
 - [ ] `repost-documentation` — ADR type:issue — modelo de widgets
 - [ ] `repost-documentation` — ADR type:issue — armazenamento de mídia

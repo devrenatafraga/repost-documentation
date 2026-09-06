@@ -1,0 +1,47 @@
+# Backlog da onda 3 — CRUD de posts (ADR-0005)
+# Sincronizar com: ./scripts/sync-backlog.sh backlog/wave-3.yaml
+
+owner: devrenatafraga
+wave: 3
+
+issues:
+  - repo: repost-manager-backend
+    title: "CRUD admin de posts (list/get/create/update/delete)"
+    adr: "0005"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:backend", "type:feat", "adr:0005", "P1"]
+    body: |
+      API autenticada de posts no blog padrão (ADR-0005).
+
+      **Critérios de aceite**
+      - [ ] `GET/POST /api/v1/admin/posts` e `GET/PUT/DELETE /api/v1/admin/posts/{id}`
+      - [ ] Escopo por `blog_id` do blog `default`
+      - [ ] Status `draft` | `scheduled` | `published`; slug único por blog
+      - [ ] OpenAPI atualizado; testes com JWT + Testcontainers
+
+  - repo: repost-manager-backend
+    title: "API pública de posts publicados (list + get by slug)"
+    adr: "0005"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:backend", "type:feat", "adr:0005", "P1"]
+    body: |
+      Superfície anônima para o blog Next.js (ISR).
+
+      **Critérios de aceite**
+      - [ ] `GET /api/v1/public/posts` — só `published`, ordenado por `published_at`
+      - [ ] `GET /api/v1/public/posts/{slug}` — 404 se não publicado
+      - [ ] OpenAPI + testes
+
+  - repo: repost-manager-frontend
+    title: "Listagem e editor Markdown de posts no manager"
+    adr: "0005"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:manager", "type:feat", "adr:0005", "P1"]
+    body: |
+      UI admin para criar/editar posts após auth (ADR-0006).
+
+      **Critérios de aceite**
+      - [ ] Lista de posts com status
+      - [ ] Formulário criar/editar (title, slug, excerpt, content_md, status)
+      - [ ] `npm run gen:api` após contrato do backend
+      - [ ] Rotas protegidas (reusa sessão existente)
