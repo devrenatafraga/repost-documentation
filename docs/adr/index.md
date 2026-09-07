@@ -10,12 +10,12 @@ Decisões transversais do Repost. ADRs locais vivem em `docs/adr/` de cada repo 
 | [0004](0004-selecao-de-stack.md) | Seleção de stack | aceito | 2026-08-26 |
 | [0005](0005-modelo-de-dados-e-multi-tenant.md) | Modelo de dados e prontidão para multi-tenant | aceito | 2026-08-26 |
 | [0006](0006-autenticacao-usuario-unico.md) | Autenticação e autorização de usuário único | aceito | 2026-09-06 |
+| [0007](0007-topologia-de-hospedagem-e-deploy.md) | Topologia de hospedagem e deploy | aceito | 2026-09-07 |
 
 ## Previstos (próximas ondas)
 
 Estas decisões existem como issues `type:adr` no backlog; o arquivo ADR só nasce quando a implementação as exigir.
 
-- Topologia de hospedagem e deploy
 - Estratégia de cache e frescor de conteúdo
 - Modelo de tema por design tokens
 - Modelo de widgets
