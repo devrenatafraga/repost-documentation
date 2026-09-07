@@ -21,6 +21,7 @@ labels=(
   "adr:0004|#EDEDED|From ADR-0004"
   "adr:0005|#EDEDED|From ADR-0005"
   "adr:0006|#EDEDED|From ADR-0006"
+  "adr:0007|#EDEDED|From ADR-0007"
   "P1|#B60205|Priority 1"
   "P2|#FBCA04|Priority 2"
   "P3|#0E8A16|Priority 3"
