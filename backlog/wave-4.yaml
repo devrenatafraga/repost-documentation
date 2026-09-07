@@ -1,0 +1,61 @@
+# Backlog da onda 4 — primeiro deploy (ADR-0007)
+# Sincronizar com: ./scripts/sync-backlog.sh backlog/wave-4.yaml
+
+owner: devrenatafraga
+wave: 4
+
+issues:
+  - repo: repost-manager-backend
+    title: "Dockerfile e deploy do Ktor no Koyeb"
+    adr: "0007"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:backend", "type:chore", "adr:0007", "P1"]
+    body: |
+      Empacotar e publicar a API conforme ADR-0007.
+
+      **Critérios de aceite**
+      - [ ] `Dockerfile` (JRE 25) com health em `/health`
+      - [ ] Flags JVM adequadas a ~512 MB
+      - [ ] Serviço no Koyeb (ou Northflank) respondendo health público
+      - [ ] Documentar variáveis de ambiente necessárias no README
+
+  - repo: repost-manager-backend
+    title: "Neon em produção e checklist de secrets do backend"
+    adr: "0007"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:backend", "type:chore", "adr:0007", "P1"]
+    body: |
+      Provisionar Postgres e ligar o backend deployado (ADR-0007).
+
+      **Critérios de aceite**
+      - [ ] Projeto Neon + `DATABASE_*` / JDBC no PaaS
+      - [ ] Flyway aplica schema no boot (ou job de migrate)
+      - [ ] `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH`, `CORS_ORIGINS`, `COOKIE_SECURE`, `API_BASE_URL` documentados e setados
+      - [ ] Login admin funciona contra o ambiente remoto
+
+  - repo: repost-manager-frontend
+    title: "Deploy do manager na Vercel"
+    adr: "0007"
+    milestone: "M2 Nucleo de conteudo"
+    labels: ["area:manager", "type:chore", "adr:0007", "P1"]
+    body: |
+      Publicar o SPA admin (ADR-0007).
+
+      **Critérios de aceite**
+      - [ ] Projeto Vercel ligado ao repo
+      - [ ] `VITE_API_BASE_URL` apontando para a API pública
+      - [ ] Login com credentials/CORS funcionando no domínio da Vercel
+
+  - repo: repost-frontend
+    title: "Deploy do blog na Vercel e lista/detalhe via API pública"
+    adr: "0007"
+    milestone: "M3 Blog publico"
+    labels: ["area:blog", "type:feat", "adr:0007", "P1"]
+    body: |
+      Publicar o Next.js e consumir posts published (ADR-0007 / ADR-0005).
+
+      **Critérios de aceite**
+      - [ ] Projeto Vercel ligado ao repo
+      - [ ] `GET /api/v1/public/posts` na home (ou listagem)
+      - [ ] Página por slug via `GET /api/v1/public/posts/{slug}`
+      - [ ] Variável de ambiente com base URL da API

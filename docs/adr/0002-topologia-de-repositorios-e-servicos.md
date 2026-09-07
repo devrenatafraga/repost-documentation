@@ -58,4 +58,4 @@ O Repost precisa de painel de gestão, API e blog público. A tentação é cria
 - [ ] `repost-manager-frontend` — Scaffold Vite + React + TypeScript
 - [ ] `repost-frontend` — Scaffold Next.js App Router
 - [ ] `repost-documentation` — ADR type:issue — autenticação de usuário único (próxima onda)
-- [ ] `repost-documentation` — ADR type:issue — topologia de hospedagem e deploy (próxima onda)
+- [x] `repost-documentation` — ADR type:issue — topologia de hospedagem e deploy (próxima onda)
